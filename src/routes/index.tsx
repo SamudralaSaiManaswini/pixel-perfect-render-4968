@@ -174,9 +174,31 @@ function Index() {
                 <Spinner /> Consulting memory…
               </p>
             ) : suggestion ? (
-              <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-foreground">
-                {suggestion}
-              </p>
+              <div className="mt-3 space-y-2 text-sm leading-relaxed text-foreground">
+                {suggestion
+                  .split("\n")
+                  .filter((line) => line.trim() !== "")
+                  .map((line, i) => {
+                    const heading = /^#{1,6}\s/.test(line);
+                    const clean = line
+                      .replace(/^#{1,6}\s*/, "")
+                      .replace(/\*\*/g, "")
+                      .replace(/`/g, "");
+                    return (
+                      <p
+                        key={i}
+                        className={
+                          heading
+                            ? "pt-2 text-sm font-semibold text-foreground"
+                            : "whitespace-pre-wrap text-muted-foreground"
+                        }
+                      >
+                        {clean}
+                      </p>
+                    );
+                  })}
+              </div>
+
             ) : (
               <p className="mt-3 text-sm text-muted-foreground">
                 No analysis yet.
