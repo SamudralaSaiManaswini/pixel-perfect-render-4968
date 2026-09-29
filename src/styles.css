@@ -69,7 +69,6 @@
 
 :root {
   --radius: 0.5rem;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --background: oklch(0.17 0.015 250);
   --foreground: oklch(0.94 0.008 250);
   --card: oklch(0.213 0.017 250);
@@ -150,5 +149,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
   }
+
 }
